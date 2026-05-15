@@ -13,6 +13,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     public List<Produto> findByNameProductContainingIgnoreCase(String name);
 
-    public Optional<Produto> findById(Long id);
+    public Optional<Produto> findById(long id);
+
+    public  Produto save(Produto produto);
 
 }

@@ -4,10 +4,10 @@ import api.dev.application.model.Produto;
 import api.dev.application.service.ProdutoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import api.dev.application.model.Produto;
+import api.dev.application.DTO.requests.RequestProdutoDTO;
+import api.dev.application.DTO.responses.ResponseProdutoDTO;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -45,5 +45,13 @@ public class ProdutoController {
     @GetMapping("/searchProductWithContain")
     public List<Produto> searchProductsWithContain(@RequestParam String search) {
         return produtoService.findPartialName(search);
+    }
+
+    @PutMapping("/updateProduct")
+    public ResponseEntity<ResponseProdutoDTO> updateProduct(@RequestBody RequestProdutoDTO reqProductDto) {
+
+        ResponseProdutoDTO responseProdutoDTO = produtoService.updateProduct(reqProductDto);
+
+        return ResponseEntity.ok(responseProdutoDTO) ;
     }
 }
