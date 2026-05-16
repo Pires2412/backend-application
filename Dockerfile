@@ -1,14 +1,27 @@
-# Etapa 1: build
+# =========================
+# Etapa 1 - Build
+# =========================
 FROM maven:3.9-eclipse-temurin-17 AS build
 
 WORKDIR /app
 
-COPY . .
+# Copia primeiro o pom para aproveitar cache
+COPY pom.xml .
 
+# Baixa dependências antes
+RUN mvn dependency:go-offline
+
+# Copia o restante do projeto
+COPY src ./src
+
+# Gera o jar
 RUN mvn clean package -DskipTests
 
-# Etapa 2: runtime
-FROM eclipse-temurin:17-jdk-alpine
+
+# =========================
+# Etapa 2 - Runtime
+# =========================
+FROM eclipse-temurin:17-jre-alpine
 
 WORKDIR /app
 
