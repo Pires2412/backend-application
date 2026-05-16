@@ -32,11 +32,6 @@ public class ProdutoController {
         return produtoService.listingAll();
     }
 
-    @PostMapping("/createNewProduct")
-    public Produto saveNewProduct(@RequestBody Produto produto) {
-        return produtoService.save(produto);
-    }
-
     @PostMapping("/createMulitpleProducts")
     public List<Produto> saveMultipleProducts(@RequestBody List<Produto> produtos) {
         return produtoService.saveAll(produtos);
