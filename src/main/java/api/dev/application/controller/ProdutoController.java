@@ -57,4 +57,11 @@ public class ProdutoController {
 
         return ResponseEntity.ok(responseProdutoDTO);
     }
+
+    @DeleteMapping("/deleteProduct/{id}")
+    public String deleteProductById(@PathVariable Long id) {
+        produtoService.deleteProductById(id);
+
+        return "Produto deletado com sucesso!";
+    }
 }

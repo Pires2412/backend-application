@@ -94,4 +94,6 @@ public class ProdutoService {
         return  responseProduct;
     }
 
+    public void deleteProductById(Long id) {produtoRepository.deleteById(id);}
+
 }
