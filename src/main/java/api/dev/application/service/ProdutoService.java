@@ -68,4 +68,30 @@ public class ProdutoService {
        return responseProdutoDTO;
     }
 
+    public ResponseProdutoDTO createNewProduct(RequestProdutoDTO dto) {
+        Produto product = new Produto(
+                dto.nameProduct(),
+                dto.description(),
+                dto.quantityInStock(),
+                dto.purchasePrice(),
+                dto.sellingPrice(),
+                dto.supplier(),
+                dto.category(),
+                dto.subcategory());
+
+        produtoRepository.save(product);
+
+        ResponseProdutoDTO responseProduct = new ResponseProdutoDTO(
+                dto.nameProduct(),
+                dto.description(),
+                dto.quantityInStock(),
+                dto.purchasePrice(),
+                dto.sellingPrice(),
+                dto.supplier(),
+                dto.category(),
+                dto.subcategory());
+
+        return  responseProduct;
+    }
+
 }

@@ -54,4 +54,12 @@ public class ProdutoController {
 
         return ResponseEntity.ok(responseProdutoDTO) ;
     }
+
+    @PostMapping("/createNewProduct")
+    public ResponseEntity<ResponseProdutoDTO> saveNewProduct(@RequestBody RequestProdutoDTO reqProductDto) {
+
+        ResponseProdutoDTO responseProdutoDTO = produtoService.createNewProduct(reqProductDto);
+
+        return ResponseEntity.ok(responseProdutoDTO);
+    }
 }
